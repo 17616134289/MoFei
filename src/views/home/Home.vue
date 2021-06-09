@@ -11,6 +11,7 @@
 	      <div class="swiper-pagination" slot="pagination"></div>
 	    </swiper>
 	  </div>
+		<Recom :recoms="recoms"/>
 </div>
 </template>
 
@@ -19,16 +20,19 @@ import {getBannerData} from "network/home"
 import NavBar from 'components/navbar/NavBar.vue'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import "swiper/swiper-bundle.min.css"
+import Recom from './Recom.vue'
 	export default{
 		name:'Home',
 		components:{
 			NavBar,
 			swiper,
-			swiperSlide
+			swiperSlide,
+			Recom
 		},
 		data(){
 			return{
 				bannerList : [],
+				recoms:[],
 				 SwiperOption:{
 					loop:true,
 					autoplay:true,
@@ -50,6 +54,8 @@ import "swiper/swiper-bundle.min.css"
 				let list = res.data.bannerList
 				for(let i in list){
 					this.bannerList.push(list[i].imgurl)
+					// console.log(list[i])
+					this.recoms.push(list[i])
 				}
 			})
 		},
